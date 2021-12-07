@@ -119,15 +119,5 @@ public class RestAssuredTest {
             System.out.println("Status Code" + response1.statusCode());
             response1.prettyPrint();
         }
-
-
-
-
-
-
-
-
-
-
     }
 }
