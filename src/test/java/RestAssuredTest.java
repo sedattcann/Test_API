@@ -21,7 +21,7 @@ public class RestAssuredTest {
                     .port(7777)
                     .header("accept-encoding", "gzip")
                     .header("ilKod","14")
-                    .header("header","2")
+                    .header("kurumKod","2")
                     .header("ip","10.6.6.45")
                     .header("tc","55588096488")
                     .get("/AcilNG112Middleware-war/webresources/ng112dao/createIncident");
