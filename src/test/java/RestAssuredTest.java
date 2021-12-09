@@ -1,40 +1,40 @@
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import org.json.JSONObject;
 import org.testng.annotations.Test;
 import java.util.List;
 import static io.restassured.RestAssured.*;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.lessThan;
+
 public class RestAssuredTest {
 
 
     @Test
     public void simpleTest() {
-        baseURI="http://testproxy.ng112.gov.tr";
-        Response response=given()
-                .log().all()
-                .port(7777)
-                .header("accept-encoding", "gzip")
-                .header("ilKod","14")
-                .header("header","2")
-                .header("ip","10.6.6.45")
-                .header("tc","55588096488")
-                .get("/AcilNG112Middleware-war/webresources/ng112dao/createIncident");
-        response.prettyPrint();
-        System.out.println(response.statusCode());
-        List res = response.jsonPath().get("value");
-        System.out.println("vaka numarası : "+res.get(0));
-        if (response.statusCode()==200){
+        for (int x=0;x<10;x++)
+        {
             baseURI="http://testproxy.ng112.gov.tr";
-        Response response1=given()
-                .log().all()
-                .port(7777)
-                .header("accept-encoding", "gzip")
-                .contentType("application/json")
-                .accept(ContentType.JSON)
-                .header("ilKod","14")
-                .header("header","2")
-                .header("ip","10.6.6.45")
-                .header("tc","55588096488")
-                .body("{\n" +
+
+            Response response=given()
+                    .log().all()
+                    .port(7777)
+                    .header("accept-encoding", "gzip")
+                    .header("ilKod","14")
+                    .header("header","2")
+                    .header("ip","10.6.6.45")
+                    .header("tc","55588096488")
+                    .get("/AcilNG112Middleware-war/webresources/ng112dao/createIncident");
+
+            response.prettyPrint();
+
+            System.out.println("Status Code : " +response.statusCode());
+            List res = response.jsonPath().get("value");
+            System.out.println("vaka numarası : "+res.get(0));
+            if (response.statusCode()==200){
+                baseURI="http://testproxy.ng112.gov.tr";
+                int kurumKod=2;
+                String postData="{\n" +
                         "  \"id\": "+res.get(0)+",\n" +
                         "  \"lastModificationDate\": \"2021-12-07 10:15:00.505\",\n" +
                         "  \"cityCode\": 14,\n" +
@@ -113,11 +113,30 @@ public class RestAssuredTest {
                         "  \"enabizIncidents\": [],\n" +
                         "  \"eventTypeId\": 0,\n" +
                         "  \"ids\": []\n" +
-                        "}")
-                .post("/AcilNG112Middleware-war/webresources/ng112dao/incident/update");
+                        "}";
+                Response response1;
+                response1 = given()
+                        .log().all()
+                        .port(7777)
+                        .header("accept-encoding", "gzip")
+                        .contentType("application/json")
+                        .accept(ContentType.JSON)
+                        .contentType(ContentType.JSON)
+                        .header("ilKod","14")
+                        .header("kurumKod","2")
+                        .header("ip","10.6.6.45")
+                        .header("tc","55588096488")
+                        .body(postData)
+                        .when()
+                        .post("/AcilNG112Middleware-war/webresources/ng112dao/incident/update");
 
-            System.out.println("Status Code" + response1.statusCode());
-            response1.prettyPrint();
+
+                System.out.println("Status Code : " + response1.statusCode());
+                response1.prettyPrint();
+            }
+
         }
+
+
     }
 }
