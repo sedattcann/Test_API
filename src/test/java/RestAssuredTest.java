@@ -127,7 +127,7 @@ public class RestAssuredTest {
                         .header("tc","55588096488")
                         .body(postData)
                         .when()
-                        .post("/AcilNG112Middleware-war/webresources/ng112dao/incident/update");
+                        .post("************");
 
 
                 System.out.println("Status Code : " + response1.statusCode());
