@@ -14,7 +14,7 @@ public class RestAssuredTest {
     public void simpleTest() {
         for (int x=0;x<10;x++)
         {
-            baseURI="http://testproxy.ng112.gov.tr";
+            baseURI="*************";//
 
             Response response=given()
                     .log().all()
@@ -24,7 +24,7 @@ public class RestAssuredTest {
                     .header("kurumKod","2")
                     .header("ip","10.6.6.45")
                     .header("tc","55588096488")
-                    .get("/AcilNG112Middleware-war/webresources/ng112dao/createIncident");
+                    .get("*********");
 
             response.prettyPrint();
 
