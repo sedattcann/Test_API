@@ -32,7 +32,7 @@ public class RestAssuredTest {
             List res = response.jsonPath().get("value");
             System.out.println("vaka numarası : "+res.get(0));
             if (response.statusCode()==200){
-                baseURI="http://testproxy.ng112.gov.tr";
+                baseURI="***********";
                 String postData="{\n" +
                         "  \"id\": "+res.get(0)+",\n" +
                         "  \"lastModificationDate\": \"2021-12-07 10:15:00.505\",\n" +
