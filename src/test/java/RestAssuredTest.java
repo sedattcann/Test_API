@@ -23,7 +23,7 @@ public class RestAssuredTest {
                     .header("ilKod","14")
                     .header("kurumKod","2")
                     .header("ip","10.6.6.45")
-                    .header("tc","55588096488")
+                    .header("tc","**********")
                     .get("*********");
 
             response.prettyPrint();
@@ -124,7 +124,7 @@ public class RestAssuredTest {
                         .header("ilKod","14")
                         .header("kurumKod","2")
                         .header("ip","10.6.6.45")
-                        .header("tc","55588096488")
+                        .header("tc","**********")
                         .body(postData)
                         .when()
                         .post("************");
